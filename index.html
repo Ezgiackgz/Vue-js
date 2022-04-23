@@ -46,8 +46,9 @@
         <section class="row log" v-if=game>
             <div class="small-12 columns">
                 <ul>
-                    <li v-for="log in logs">
-                        {{log}}
+                    <li 
+                    :class = "{'player-turn' : log.turn == 'Oyuncu', 'monster-turn' : log.turn == 'Canavar'}"
+                    v-for="log in logs">  {{log.text}}
                     </li>
                 </ul>
 
