@@ -39,7 +39,7 @@ new Vue({
     monsterAttect: function () {
       var point = Math.ceil(Math.random() * 15);
       this.player -= point;
-      this.GameLogs({turn : "Oyuncu", text : "Canavar Atağı("+ point + ")"})
+      this.GameLogs({turn : "Canavar", text : "Canavar Atağı("+ point + ")"})
     },
     /* log mantığı*/
     GameLogs: function (log) {
