@@ -36,4 +36,20 @@ new Vue({
       this.player -= point;
     },
   },
+  /* Can durumunu gösteren proges barına göre izleme durumuna göre 0 a eşit olduğunda durması eksiye düşmeme durumu*/
+  watch: {
+    /* value değeri alır */
+    player: function (value) {
+      if (value <= 0) {
+        this.player = 0;
+      } else if (value >= 100) {
+        this.player = 100;
+      }
+    },
+    monster: function (value) {
+      if (value <= 0) {
+        this.monster = 0;
+      }
+    }
+  },
 });
