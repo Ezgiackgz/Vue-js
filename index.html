@@ -14,15 +14,15 @@
             <div class="small-6 columns">
                 <h1 class="text-center">SEN</h1>
                 <div class="healthbar">
-                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-                        {{player }}%
+                    <div :style="{width : player + '%' }"class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        {{player}}%
                     </div>
                 </div>
             </div>
             <div class="small-6 columns">
                 <h1 class="text-center">CANAVAR</h1>
                 <div class="healthbar">
-                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                    <div :style="{width : monster + '%'}" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
                         {{monster}}%
                     </div>
                 </div>
