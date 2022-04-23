@@ -3,55 +3,37 @@ new Vue({
   data: {
     player: 100,
     monster: 100,
-    game : false
+    game: false,
   },
   methods: {
-  startGame: function () {
-    this.game = true;
+    startGame: function () {
+      this.game = true;
     },
     attect: function () {
-        /* Saldırı zamanında can azaltmak için random sayı oluştur*/
-        var point = Math.ceil(Math.random() * 10);
-        /* oyuncunun canından eksilt*/
-        this.monster-=point;
-        /*Canavarın Canını azaltma konksiyonunu çalıştır */
-        this.monsterAttect();
-        console.log(this.monster);
-        console.log(this.player);
+      /* Saldırı zamanında can azaltmak için random sayı oluştur*/
+      var point = Math.ceil(Math.random() * 10);
+      /* oyuncunun canından eksilt*/
+      this.monster -= point;
+      /*Canavarın Canını azaltma konksiyonunu çalıştır */
+      this.monsterAttect();
     },
     privateAttect: function () {
-            /* Saldırı zamanında can azaltmak için random sayı oluştur*/
-            var point = Math.ceil(Math.random() * 50);
-            /* oyuncunun canından eksilt*/
-            this.monster-=point;
-            /*Canavarın Canını azaltma konksiyonunu çalıştır */
-            this.monsterAttect();
-            console.log(this.monster);
-            console.log(this.player);
+      var point = Math.ceil(Math.random() * 50);
+      this.monster -= point;
     },
     firstAid: function () {
-         /* Saldırı zamanında can azaltmak için random sayı oluştur*/
-         var point = Math.ceil(Math.random() * 50);
-         /* oyuncunun canından eksilt*/
-         this.monster+=point;
-         /*Canavarın Canını azaltma konksiyonunu çalıştır */
-         this.monsterAttect();
-         console.log(this.monster);
-         console.log(this.player);
-    }
-    
-    ,
+      var point = Math.ceil(Math.random() * 50);
+      this.monster += point;
+      this.monsterAttect();
+    },
+
     giveUp: function () {
-        this.player = 0;
-        console.log(this.monster);
-        console.log(this.player);
+      this.player = 0;
     },
     /*Canavar İçin saldırı fonksiyonu */
-    monsterAttect:function(){
-        var point = Math.ceil(Math.random()*15);
-        this.player-=point;
-        
-    }
-  }
-
+    monsterAttect: function () {
+      var point = Math.ceil(Math.random() * 15);
+      this.player -= point;
+    },
+  },
 });
