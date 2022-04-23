@@ -14,7 +14,8 @@
             <div class="small-6 columns">
                 <h1 class="text-center">SEN</h1>
                 <div class="healthbar">
-                    <div :style="{width : player + '%' }"class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                    <div :style="{width : player + '%' }" class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;">
                         {{player}}%
                     </div>
                 </div>
@@ -22,7 +23,8 @@
             <div class="small-6 columns">
                 <h1 class="text-center">CANAVAR</h1>
                 <div class="healthbar">
-                    <div :style="{width : monster + '%'}" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                    <div :style="{width : monster + '%'}" class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;">
                         {{monster}}%
                     </div>
                 </div>
@@ -33,7 +35,7 @@
                 <button id="start-game" @click="startGame">YENİ OYUN</button>
             </div>
         </section>
-        <section class="row controls"v-if=game>
+        <section class="row controls" v-if=game>
             <div class="small-12 columns">
                 <button id="attack" @click="attect">SALDIRI</button>
                 <button id="special-attack" @click="privateAttect">ÖZEL SALDIRI</button>
@@ -41,13 +43,14 @@
                 <button id="give-up" @click="giveUp">PES ET!</button>
             </div>
         </section>
-        <section class="row log"v-if=game>
+        <section class="row log" v-if=game>
             <div class="small-12 columns">
                 <ul>
-                    <li>
-
+                    <li v-for="log in logs">
+                        {{log}}
                     </li>
                 </ul>
+
             </div>
         </section>
     </div>
