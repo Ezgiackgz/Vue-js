@@ -5,6 +5,22 @@ new Vue({
     monster: 100,
     game: false,
     logs: [],
+    attect_player : 10,
+    attect_private : 25,
+    attect_monster : 15,
+    heal_up : 20,
+    log_text : {
+        attect : "Oyuncu Atağı  :",
+        privateAttect : "Özel Oyuncu Atağı :",
+        firstAid : "İlk Yardım :",
+        giveUp : "Oyuncu Pes Etti",
+        monsterAttect : "Canavar Atağı :"
+    },
+    log_turn :{
+        Player : "Oyuncu",
+        Monster : "Canavar"
+    }
+
   },
   methods: {
     startGame: function () {
@@ -12,34 +28,34 @@ new Vue({
     },
     attect: function () {
       /* Saldırı zamanında can azaltmak için random sayı oluştur*/
-      var point = Math.ceil(Math.random() * 10);
+      var point = Math.ceil(Math.random() * this.attect_player);
       /* oyuncunun canından eksilt*/
       this.monster -= point;
       /*Canavarın Canını azaltma konksiyonunu çalıştır */
       this.monsterAttect();
-      this.GameLogs({turn : "Oyuncu", text : "Oyuncu Atağı("+ point + ")"})
+      this.GameLogs({turn : this.log_turn.Player, text :this.log_text.attect + point })
     },
     privateAttect: function () {
-      var point = Math.ceil(Math.random() * 50);
+      var point = Math.ceil(Math.random() * this.attect_private);
       this.monster -= point;
-      this.GameLogs({turn : "Oyuncu", text : "Özel Oyuncu Atağı("+ point + ")"})
+      this.GameLogs({turn : this.log_turn.Player, text :this.log_text.privateAttect  + point })
     },
     firstAid: function () {
-      var point = Math.ceil(Math.random() * 50);
+      var point = Math.ceil(Math.random() * this.heal_up);
       this.monster += point;
       this.monsterAttect();
-      this.GameLogs({turn : "Oyuncu", text : "İlk Yardım ("+ point + ")"})
+      this.GameLogs({turn : this.log_turn.Player, text : this.log_text.firstAid + point })
     },
 
     giveUp: function () {
       this.player = 0;
-      this.GameLogs({turn : "Oyuncu", text : "Pes Etti"})
+      this.GameLogs({turn : this.log_turn.Player, text : this.log_text.giveUp})
     },
     /*Canavar İçin saldırı fonksiyonu */
     monsterAttect: function () {
-      var point = Math.ceil(Math.random() * 15);
+      var point = Math.ceil(Math.random() * this.attect_monster);
       this.player -= point;
-      this.GameLogs({turn : "Canavar", text : "Canavar Atağı("+ point + ")"})
+      this.GameLogs({turn : this.log_turn.Monster, text : this.log_text.monsterAttect+ point })
     },
     /* log mantığı*/
     GameLogs: function (log) {
@@ -55,6 +71,7 @@ new Vue({
         if (confirm("Oyunu Kaybettiniz")) {
           this.player = 100;
           this.monster = 100;
+          this.logs = [];
         }
       } else if (value >= 100) {
         this.player = 100;
@@ -66,6 +83,7 @@ new Vue({
         if (confirm("Oyunu Kazandınız")) {
           this.player = 100;
           this.monster = 100;
+          this.logs = [];
         }
       }
     },
