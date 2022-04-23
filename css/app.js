@@ -42,6 +42,10 @@ new Vue({
     player: function (value) {
       if (value <= 0) {
         this.player = 0;
+        if(confirm("Oyunu Kaybettiniz")){
+            this.player = 100;
+            this.monster = 100;
+        }
       } else if (value >= 100) {
         this.player = 100;
       }
@@ -49,6 +53,10 @@ new Vue({
     monster: function (value) {
       if (value <= 0) {
         this.monster = 0;
+        if(confirm("Oyunu Kazandınız")){
+            this.player = 100;
+            this.monster = 100;
+        }
       }
     }
   },
