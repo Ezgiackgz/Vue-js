@@ -49,10 +49,11 @@
             <div class="small-12 columns">
                 <ul>
                     <li 
-                    :class = "{'player-turn' : log.turn == 'Oyuncu', 'monster-turn' : log.turn == 'Canavar', }"
+                    :class = "{'player-turn' : log.turn == 'Oyuncu', 'monster-turn' : log.turn == 'Canavar', 'monsterScore-turn' : log.turn == 'Canavarın Skoru', 'score-turn' : log.turn  == 'Skorunuz'}"
                     v-for="log in logs">  {{log.text}}
                     </li>
                 </ul>
+                
 
             </div>
         </section>

@@ -1,11 +1,11 @@
-let score ;
+var score = 0;
+let monsterScore = 0;
 new Vue({
   el: "#app",
   data: {
     player: 100,
     monster: 100,
     game: false,
-    score: 0,
     logs: [],
     attect_player: 10,
     attect_private: 25,
@@ -17,10 +17,13 @@ new Vue({
       firstAid: "İlk Yardım :",
       giveUp: "Oyuncu Pes Etti",
       monsterAttect: "Canavar Atağı :",
+     
     },
     log_turn: {
       Player: "Oyuncu",
       Monster: "Canavar",
+      monsterScore : "Canavarın Skoru",
+      score : "Skorunuz"
     },
   },
   methods: {
@@ -31,8 +34,6 @@ new Vue({
     attect: function () {
       /* Saldırı zamanında can azaltmak için random sayı oluştur*/
       var point = this.attect_player;
-     score += 5;
-     alert(score);
       /* oyuncunun canından eksilt*/
       this.monster -= point;
       /*Canavarın Canını azaltma konksiyonunu çalıştır */
@@ -41,6 +42,11 @@ new Vue({
         turn: this.log_turn.Player,
         text: this.log_text.attect + point,
       });
+      if (this.attect_player) {
+        score += 5;
+      } else {
+        score = 0;
+      }
     },
     privateAttect: function () {
       var point = this.attect_private;
@@ -49,6 +55,11 @@ new Vue({
         turn: this.log_turn.Player,
         text: this.log_text.privateAttect + point,
       });
+      if (this.attect_private) {
+        score += 10;
+      } else {
+        score = 0;
+      }
     },
     firstAid: function () {
       var point = this.heal_up;
@@ -58,6 +69,11 @@ new Vue({
         turn: this.log_turn.Player,
         text: this.log_text.firstAid + point,
       });
+      if (this.heal_up) {
+        score -= 2;
+      } else {
+        score = 0;
+      }
     },
 
     giveUp: function () {
@@ -72,6 +88,11 @@ new Vue({
         turn: this.log_turn.Monster,
         text: this.log_text.monsterAttect + point,
       });
+     if(this.attect_monster){
+       monsterScore +=20;
+     }else{
+       monsterScore +=0;
+     }
     },
     /* log mantığı*/
     GameLogs: function (log) {
@@ -88,9 +109,11 @@ new Vue({
           swal
             .fire({
               title: "Oyunu Kaybettiniz Tekrar Denemek İster misiniz?",
-              text: "Skor : " + this.score,
+              text: "Skorunuz : " + score  + 'Canavarın Skoru :' + monsterScore ,
               icon: "error",
               confirmButtonText: "Devam",
+              allowOutsideClick: false,
+              allowEscapeKey: false,
             })
             .then((willDelete) => {
               let timerInterval;
@@ -98,13 +121,12 @@ new Vue({
                 Swal.fire({
                   title: "Oyun Yeniden Yükleniyor Başarılar",
                   timer: 10000,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
                   didOpen: () => {
                     Swal.showLoading();
-                    timerInterval = setInterval(() => {
-                      
-                    }, 1000);
+                    timerInterval = setInterval(() => {}, 1000);
                   },
-                 
                 });
               }
             })
@@ -123,9 +145,11 @@ new Vue({
         if (
           swal.fire({
             title: "Tebrikler Oyunu Kazandınız",
-            text: "Skorunuz : " + this.score,
+            text: "Skorunuz : " + score  + 'Canavarın Skoru :' + monsterScore ,
             icon: "success",
             confirmButtonText: "Ok",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
           })
         ) {
           this.player = 100;
