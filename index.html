@@ -5,6 +5,7 @@
     <title>Canavar Avı</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="css/foundation.min.css">
+
     <link rel="stylesheet" href="css/app.css">
 </head>
 
@@ -33,6 +34,7 @@
         <section class="row controls" v-if="!game">
             <div class="small-12 columns">
                 <button id="start-game" @click="startGame">YENİ OYUN</button>
+             
             </div>
         </section>
         <section class="row controls" v-if=game>
@@ -47,7 +49,7 @@
             <div class="small-12 columns">
                 <ul>
                     <li 
-                    :class = "{'player-turn' : log.turn == 'Oyuncu', 'monster-turn' : log.turn == 'Canavar'}"
+                    :class = "{'player-turn' : log.turn == 'Oyuncu', 'monster-turn' : log.turn == 'Canavar', }"
                     v-for="log in logs">  {{log.text}}
                     </li>
                 </ul>
@@ -56,6 +58,8 @@
         </section>
     </div>
     <script src="./css/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
